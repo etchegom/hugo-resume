@@ -7,7 +7,7 @@
             {{ $coloredSkills := cond ($.Site.Params.coloredSkills) ("colored") ("") }}
             {{ range .skills }}
                 {{ if isset . "name" }}
-                    {{ $devIcon := cond (in $.Site.Data.devicons (lower .name)) (lower .name) (lower .icon) }}
+                    {{ $devIcon := cond (isset . "icon") (lower .icon) (lower .name) }}
                     <li class="list-inline-item">
                       <i class="devicon-{{ $devIcon }}-plain {{ $coloredSkills }}"></i>
                       {{if isset . "link"}}
