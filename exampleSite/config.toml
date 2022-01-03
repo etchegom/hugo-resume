@@ -23,6 +23,8 @@ showPublications = true
 showQr = true
 showSkills = true
 coloredSkills = true
+showCertifications = false
+showSocialization = true
 
 [params.google]
 
