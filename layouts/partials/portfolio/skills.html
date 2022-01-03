@@ -4,11 +4,12 @@
     {{ range $.Site.Data.skills }}
         <div class="subheading mb-3 skills-heading">{{ .grouping }}</div>
             <ul>
+            {{ $coloredSkills := cond ($.Site.Params.coloredSkills) ("colored") ("") }}
             {{ range .skills }}
                 {{ if isset . "name" }}
-                    {{ $devicon := cond (in $.Site.Data.devicons (lower .icon)) (lower .icon) (cond (in $.Site.Data.devicons (lower .name)) (lower .name) "terminal_badge") }}
+                    {{ $devIcon := cond (in $.Site.Data.devicons (lower .name)) (lower .name) (lower .icon) }}
                     <li class="list-inline-item">
-                      <i class="devicons devicons-{{ $devicon }}"></i>
+                      <i class="devicon-{{ $devIcon }}-plain {{ $coloredSkills }}"></i>
                       {{if isset . "link"}}
                           <a href="{{.link}}">{{ .name }}</a>
                       {{ else }}
@@ -17,7 +18,7 @@
                     </li>
                 {{ else }}
                   <li class="list-inline-item">
-                    <i class="devicon-{{ cond (in $.Site.Data.devicons (lower .)) (lower .) "terminal_badge" }}-plain"></i>
+                    <i class="devicon-{{ lower . }}-plain {{ $coloredSkills }}"></i>
                     {{ . }}
                   </li>
                 {{ end }}

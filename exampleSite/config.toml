@@ -22,6 +22,7 @@ showProjects = true
 showPublications = true
 showQr = true
 showSkills = true
+coloredSkills = true
 
 [params.google]
 
